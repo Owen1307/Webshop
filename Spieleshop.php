@@ -30,8 +30,18 @@ li a {
 <body>
 <?php 
 $link=mysqli_connect("localhost","root","","Spieleshop")
-or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!")
-?>
+or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!");
+$abfrage="SELECT Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung FROM Artikel;";
+$ergebnis=mysqli_query($link,$abfrage) or die ($link);
+for ($i=0; $i<mysqli_num_rows($ergebnis); $i++)
+	(print "<tr>";
+$datensatz=mysqli_fetch_rows($ergebnis);
+foreach ($datensatz as $feld)
+(print "<td>$feld</td>";)
+print "</tr>";
+}
+ ?> 
+
 </body>
   <hr>
 </html> 

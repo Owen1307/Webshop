@@ -5,10 +5,12 @@
 <?php
 $vorname = filter_input(INPUT_GET, 'vornameDB');
 $nachname = filter_input(INPUT_GET, 'nachnameDB');
+$email = filter_input(INPUT_GET, 'emailDB');
 $geburtsdatum = filter_input(INPUT_GET, 'geburtsdatumDB');
 $strasse = filter_input(INPUT_GET, 'strasseDB');
 $hausnummer = filter_input(INPUT_GET, 'hausnummerDB');
-$passwort = filter_input(INPUT_GET, 'passwortDB');
+$passwort = password_hash(filter_input(INPUT_GET, 'passwortDB'), PASSWORD_DEFAULT);
+
 
 $host = "localhost";
 $dbusername = "root";
@@ -21,8 +23,8 @@ die('Connect Error ('. mysqli_connect_errno() .') '
 . mysqli_connect_error());
 }
 else{
-$sql = "INSERT INTO kunde (Vorname, Nachname, Geburtsdatum, Strasse, Hausnummer, Passwort)
-VALUES ('$vorname', '$nachname', '$geburtsdatum' , '$strasse' , '$hausnummer', '$passwort')";
+$sql = "INSERT INTO kunde (Vorname, Nachname, EMail, Geburtsdatum, Strasse, Hausnummer, Passwort)
+VALUES ('$vorname', '$nachname', '$email', '$geburtsdatum' , '$strasse' , '$hausnummer', '$passwort')";
 if ($conn->query($sql)){
 echo "Sie haben sich erfolgreich registriert!";
     

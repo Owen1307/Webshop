@@ -7,7 +7,7 @@ Sind Ihre Angaben korrekt?
 $link=mysqli_connect("localhost","root","","Spieleshop")
 or die ("Keine Verbindung möglich");
 
-$anfrage="SELECT Vorname, Nachname, Geburtsdatum, Strasse, Hausnummer, Passwort FROM Kunde;";
+$anfrage="SELECT Vorname, Nachname, EMail, Geburtsdatum, Strasse, Hausnummer, Passwort FROM Kunde;";
 $ergebnis=mysqli_query($link,$anfrage) 
 or die (mysqli_error($link));
 print"<table>";

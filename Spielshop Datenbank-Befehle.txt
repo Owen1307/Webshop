@@ -3,8 +3,8 @@ create database Spieleshop;
 use Spieleshop;
 
 create table Genre (GenreID INTEGER NOT NULL, Name VARCHAR(30), PRIMARY KEY (GenreID));
-create table Artikel (Artikelnr INTEGER NOT NULL, Spielname VARCHAR (50), GenreID INTEGER NOT NULL, Entwickler VARCHAR(50), Plattform VARCHAR(30), Preis double, Veroeffentlichung date, PRIMARY KEY(Artikelnr));
-create table Kunde (Kundennr INTEGER NOT NULL, Vorname VARCHAR(30), Nachname VARCHAR(30), Geburtsdatum DATE, Strasse VARCHAR(40), Hausnummer VARCHAR(10), Passwort VARCHAR(25), PRIMARY KEY (Kundennr));
+create table Artikel (Artikelnr INTEGER NOT NULL, Spielname VARCHAR (50), GenreID INTEGER NOT NULL, Entwickler VARCHAR(50), Plattform VARCHAR(30), Preis double, Veroeffentlichung date, Bild VARCHAR(100), Verkaeufe INTEGER(10), PRIMARY KEY(Artikelnr));
+create table Kunde (Kundennr INTEGER NOT NULL, Vorname VARCHAR(30), Nachname VARCHAR(30), Geburtsdatum DATE, Strasse VARCHAR(40), Hausnummer VARCHAR(10), Passwort VARCHAR(200), PRIMARY KEY (Kundennr));
 create table Bestellungen (Bestellnr INTEGER NOT NULL, Kundennr INTEGER NOT NULL, Bestelldatum DATE, Lieferdatum DATE, PRIMARY KEY (Bestellnr));
 create table Bestelldetails (ID INTEGER NOT NULL, Bestellnr INTEGER NOT NULL, Artikelnr INTEGER NOT NULL, Einzelpreis DOUBLE, Anzahl INTEGER, PRIMARY KEY(ID));
 

@@ -4,8 +4,13 @@
 <link type = "text/css" href="design.css" rel="stylesheet">
 
 <?php
+require_once'cart.php';
 session_start();
 
+cart::initial_cart();
+$WarenNr = filter_input(INPUT_POST, 'WarenNr');
+//TODO: Falls WarenNr isSet fügst der Cart hinzu
+//In der Klasse müssen nur die ArtikelIDs mit einer Anzahl geführt werden
 $_SESSION['href'] = "LogIn.php";
 $_SESSION['text'] = "Log-In (Gast)";
 
@@ -26,7 +31,7 @@ $_SESSION['text'] = "Logout ({$daten['Vorname']})";
 <li style="float:right"><a class="active" href="Benutzerregistrierung.php">Registrierung</a></li>
 <li style="float:right"><a class="active" href="Angaben.php">Angaben</a></li>
 <li style="float:right"><a class="active" href="<?=$_SESSION['href']?>"><?=$_SESSION['text']?></a></li>
-<li style="float:right"><a class="active" href="Warenkorb.php">Warenkorb</a></li>
+<li style="float:right"><a class="active" href="Warenkorb.php">Warenkorb (<?=cart::get_cart_count()?>)</a></li>
 
 <head>
 <body background="Gray.jpg">
@@ -47,28 +52,25 @@ or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!");
 
 $abfrage = "select Bilder, Artikelnr from Artikel";
 $ergebnis = mysqli_query($link,$abfrage) or die (mysqli_error($link));
-while($zeile = $ergebnis->fetch_array()):
 
+
+
+while($zeile = $ergebnis->fetch_array()):
 ?>
 
+
 <div class ="container">
-<div class="row text-center py-5">
-<div class="col-md-3 col-sm-6 my-3 my-md-0">
-<form action="Produkte.php" method="POST">
+<form action="Produkte.php" method="POST" class="box">
 <div class="card shadow">
+<button class="boxButton">
 <input type="hidden"  name="Artikelnr" value="<?=$zeile['Artikelnr'] ?>" readonly>
-<button>
-<div>
-<p><img src="<?= $zeile['Bilder'] ?>" ></p>
-</div>
-</div>
-</form>
-</div>
-</div>
+<img src="<?= $zeile['Bilder'] ?>" >
 </div>
 </button>
-<?php 
+</form>
+</div>
 
+<?php 
 endwhile;
 ?>
 

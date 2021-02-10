@@ -1,122 +1,47 @@
-<?php
-
-class cart{
-    
-    /**
-     * 
-     * Initialisiert die Klasse, muss in jeder Seite ausgeführt werden.
-     */
-    public function initial_cart()
-    {
-        
-        $cart = array();
-        if(!isset($_SESSION['cart']))
-        {
-            $_SESSION['cart']=$cart;
-        } 
-
-    }
-    
-    /**
-     * 
-     * Fügt einen Artikel in das Array ein
-     * @param unknown_type $Artikelnummer
-     * @param unknown_type $Beschreibung
-     * @param unknown_type $Verkäufer
-     * @param unknown_type $Kosten
-     * @param unknown_type $MwstSatz
-     * @param unknown_type $MwSt
-     * @param unknown_type $ZwischenSumme
-     * @param unknown_type $Anzahl
-     * @param unknown_type $gesammt
-     */
-    public function insertArtikel($Artikelnummer, $Beschreibung, $Verkäufer, $kosten, $MwstSatz, $MwSt, $ZwischenSumme, $Anzahl, $gesammt)
-    {
-        
-        $Artikel = array($Artikelnummer, $Beschreibung, $Verkäufer, $kosten, $MwstSatz, $MwSt, $ZwischenSumme, $Anzahl, $gesammt);
-        $cart = $_SESSION['cart'];
-        array_push($cart, $Artikel);
-        $_SESSION['cart'] = $cart;
-        
-    }
-    
-    /**
-     * 
-     * Gibt Alle Artikel des Array in einer Tabelle aus.
-     */
-    public function getcart()
-    {
-        $Array = $_SESSION['cart'];
-        echo "<table width='100%'>";
-        echo "<tr><th>Artikel Nummer</th><th>Beschreibung</th><th>Verkäufer</th><th>Summe</th><th>MwSt Satz</th><th>MwSt Summe</th><th>Zwischen Summe</th><th>Anzahl</th><th>Summe</th></tr>";
-        for($i = 0 ; $i < count($Array); $i++)
-        {
-            $innerArray = $Array[$i];
-            
-            echo "<tr>
-            <td>$innerArray[0]</td>
-            <td>$innerArray[1]</td>
-            <td>$innerArray[2]</td>
-            <td>$innerArray[3]</td>
-            <td>$innerArray[4]</td>
-            <td>$innerArray[5]</td>
-            <td>$innerArray[6]</td>
-            <td>$innerArray[7]</td>
-            <td>$innerArray[8]</td>
-            </tr>";
-        }
-        
-        echo "</table>";
-    }
-    
-    
-    /**
-     * 
-     * Löscht den Waren Korb
-     */
-    public function undo_cart()
-    {
-        $_SESSION['cart'] = array();
-    }
-    
-    
-    /**
-     * 
-     * Gibt einen Datensatz Zurück
-     * @param int $point
-     */
-    public function get_cartValue_at_Point($n)
-    {
-        
-        $Array = $_SESSION['cart'];            
-        return $Array[$n];
-        
-    }
-    
-    /**
-     * 
-     * Entfernt ein Artikel am Point n
-     * @param int $point
-     */
-    public function delete_cartValue_at_Point($point)
-    {
-        $Array = $_SESSION['cart'];
-        unset($Array[$point]);
-    }
-    
-    /**
-     * 
-     * Gibt die Anzahl der Artikel zurück
-     */
-    public function get_cart_count()
-    {
-        return count($_SESSION['cart']);
-    }
-}
-
-?>
-
 <html>
 <head> <title> Warenkorb </title> </head>
-<body background="Gray.jpg">
+<body background="Gray.jpg"> 
+<table summary="Summe der Artikel im Warenkorb">
+<caption><font color="white">Produkte in Ihrem Warenkorb</font></caption>
+<thead>
+  <tr>
+    <th scope="col"><font color="white">Anzahl</font></th>
+    <th scope="col"><font color="white">Produkt</font></th>
+    <th scope="col"><font color="white">Einzelpreis</font></th>
+    <th scope="col"><font color="white">Gesamt</font></th>
+  </tr>
+</thead>
+<tfoot>
+  <tr>
+    <td colspan="3"><font color="white">Summe Warenkorb:</font></td>
+    <td></td>
+  </tr>
+</tfoot>
+<tbody>
+  <tr>
+    <td><input type="text" size="3" value="1"></td>
+    <td><a href="#"></a></td>
+    <td><font color="white">      </font></td>
+    <td><font color="white">      </font></td>
+  </tr>
+  <tr>
+    <td><input type="text" size="3" value="2"></td>
+    <td><a href="#"></a></td>
+    <td><font color="white">      </font></td>
+    <td><font color="white">      </font></td>
+  </tr>
+  <tr>
+    <td><input type="text" size="3" value="1"></td>
+    <td><a href="#"></a></td>
+    <td><font color="white">      </font></td>
+    <td><font color="white">      </font></td>
+  </tr>
+  <tr>
+    <td><input type="text" size="3" value="1"></td>
+    <td><a href="#"></a></td>
+    <td><font color="white">      </font></td>
+    <td><font color="white">      </font></td>
+  </tr>
+</tbody>
+</table>
 </body>

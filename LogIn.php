@@ -36,6 +36,7 @@ if(isset($errorMessage)) {
 ?>
  
 <form action="?login=1" method="post">
+<font color="white"> 
 E-Mail:<br>
 <input type="email" size="40" maxlength="250" name="email" required autocomplete><br><br>
  
@@ -44,7 +45,7 @@ Dein Passwort:<br>
  
 <input type="submit" value="Abschicken">
 
-
+</font>
 </form> 
 </body>
 

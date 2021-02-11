@@ -1,0 +1,48 @@
+
+
+ul {
+    list-style-type: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #050505;   
+} 
+
+
+div5 {
+  background-color: red;
+  width: 100px;
+  padding: 10px;
+  margin: 250px;
+  line-height: 250px;
+}
+
+.box {
+
+ float: left;
+ margin-right: 2%;
+ padding: 20px;
+ box-sizing: border-box;
+ 
+}
+
+.box:last-child {
+margin-right: 0;
+}
+
+.boxButton {
+padding: 1px;
+}
+

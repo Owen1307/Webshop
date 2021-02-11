@@ -1,3 +1,13 @@
+<?php
+session_start();
+require_once'cart.php';
+
+$link=mysqli_connect("localhost","root","","Spieleshop")
+or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!");
+
+cart::initialise();
+?>
+
 <html>
 <head> <title> Warenkorb </title> </head>
 <body background="Gray.jpg"> 
@@ -11,37 +21,34 @@
     <th scope="col"><font color="white">Gesamt</font></th>
   </tr>
 </thead>
+<tbody>
+<?php 
+$i = 0;
+$zeile = cart::getDataFromDatabase($link, $i);
+$Artikel = cart::get($i);
+$Gesamt = 0;
+while(isset($zeile) && isset($Artikel)):
+?>
+  <tr>
+	<td><font color="white">"<?=$Artikel[1]?>"</font></td>
+    <td><font color="white">"<?=$zeile['Spielname']?>"</font></td>
+    <td><font color="white">"<?=$zeile['Preis']?>"</font></td>
+    <td><font color="white">"<?=$zeile['Preis'] * $Artikel[1] ?>"€</font></td>
+  </tr>
+ 
+<?php 
+$Gesamt += $zeile['Preis'] * $Artikel[1];
+++$i;
+$zeile = cart::getDataFromDatabase($link, $i);
+$Artikel = cart::get($i);
+endwhile;
+?>
+</tbody>
 <tfoot>
   <tr>
-    <td colspan="3"><font color="white">Summe Warenkorb:</font></td>
+    <td colspan="3"><font color="white">Summe Warenkorb: <?=$Gesamt?>€ </font></td>
     <td></td>
   </tr>
 </tfoot>
-<tbody>
-  <tr>
-    <td><input type="text" size="3" value="1"></td>
-    <td><a href="#"></a></td>
-    <td><font color="white">      </font></td>
-    <td><font color="white">      </font></td>
-  </tr>
-  <tr>
-    <td><input type="text" size="3" value="2"></td>
-    <td><a href="#"></a></td>
-    <td><font color="white">      </font></td>
-    <td><font color="white">      </font></td>
-  </tr>
-  <tr>
-    <td><input type="text" size="3" value="1"></td>
-    <td><a href="#"></a></td>
-    <td><font color="white">      </font></td>
-    <td><font color="white">      </font></td>
-  </tr>
-  <tr>
-    <td><input type="text" size="3" value="1"></td>
-    <td><a href="#"></a></td>
-    <td><font color="white">      </font></td>
-    <td><font color="white">      </font></td>
-  </tr>
-</tbody>
 </table>
 </body>

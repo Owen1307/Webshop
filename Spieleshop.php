@@ -7,10 +7,15 @@
 require_once'cart.php';
 session_start();
 
-cart::initial_cart();
-$WarenNr = filter_input(INPUT_POST, 'WarenNr');
-//TODO: Falls WarenNr isSet fügst der Cart hinzu
-//In der Klasse müssen nur die ArtikelIDs mit einer Anzahl geführt werden
+cart::initialise();
+$ArtikelNr = filter_input(INPUT_POST, 'WarenNr');
+$Anzahl = filter_input(INPUT_POST, 'Anzahl');
+if (isset($ArtikelNr) && isset($Anzahl)) {
+	cart::add($ArtikelNr, $Anzahl);
+	unset($ArtikelNr);
+	unset($Anzahl);
+}
+
 $_SESSION['href'] = "LogIn.php";
 $_SESSION['text'] = "Log-In (Gast)";
 
@@ -31,7 +36,7 @@ $_SESSION['text'] = "Logout ({$daten['Vorname']})";
 <li style="float:right"><a class="active" href="Benutzerregistrierung.php">Registrierung</a></li>
 <li style="float:right"><a class="active" href="Angaben.php">Angaben</a></li>
 <li style="float:right"><a class="active" href="<?=$_SESSION['href']?>"><?=$_SESSION['text']?></a></li>
-<li style="float:right"><a class="active" href="Warenkorb.php">Warenkorb (<?=cart::get_cart_count()?>)</a></li>
+<li style="float:right"><a class="active" href="Warenkorb.php">Warenkorb (<?=cart::size()?>)</a></li>
 
 <head>
 <body background="Gray.jpg">
@@ -50,7 +55,7 @@ $_SESSION['text'] = "Logout ({$daten['Vorname']})";
 $link=mysqli_connect("localhost","root","","Spieleshop")
 or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!");
 
-$abfrage = "select Bilder, Artikelnr from Artikel";
+$abfrage = "SELECT Bilder, Artikelnr FROM Artikel";
 $ergebnis = mysqli_query($link,$abfrage) or die (mysqli_error($link));
 
 

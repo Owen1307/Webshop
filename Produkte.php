@@ -35,6 +35,7 @@ $zeile = $ergebnis->fetch_array();
    <td>
    <form action="Spieleshop.php"  method="POST">
    <input type="hidden"  name="WarenNr" value="<?=$Artikelnr?>" readonly>
+   <input type="number" name="Anzahl" required> 
 	<input type="submit" <a href="Spieleshop.php" value="Zum Warenkorb hinzufügen"> </a> 
 	</form>
    </td>

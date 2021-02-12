@@ -13,9 +13,9 @@ create table Bestelldetails (ID INTEGER NOT NULL, Bestellnr INTEGER NOT NULL, Ar
 
 insert into Artikel (Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung) VALUES ('1', 'The Last of Us 2', '1', 'Naughty Dog', 'PlayStation 4', '69.99', '2020-06-19');
 insert into Artikel (Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung) VALUES ('2', 'Forza Horizon 4', '2', 'Playground Games', 'Xbox One', '69.99', '2018-02-10'); 
-insert into Artikel (Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung) VALUES ('3', 'The Legend of Zelda: Breath of the Wild', '3', 'Nintendo', 'Switch' , '69.99', '2017-03-03');
+insert into Artikel (Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung) VALUES ('3', 'The Legend of Zelda: Breath of the Wild', '1', 'Nintendo', 'Switch' , '69.99', '2017-03-03');
 insert into Artikel (Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung) VALUES ('4', 'Rocket League', '3','Psyonix', 'PC', '19.99', '2015-07-07');
-insert into Artikel (Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung) VALUES ('5', 'Ghost of Tsushima', '5', 'Sucker Punch', 'PlayStation 4', '69.99', '2020-07-17');
+insert into Artikel (Artikelnr, Spielname, GenreID, Entwickler, Plattform, Preis, Veroeffentlichung) VALUES ('5', 'Ghost of Tsushima', '1', 'Sucker Punch', 'PlayStation 4', '69.99', '2020-07-17');
 
 // Genre
 

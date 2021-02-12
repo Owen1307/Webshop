@@ -2,6 +2,10 @@
 session_start();
 require_once'cart.php';
 
+if(isset($_POST['loeschen'])) {
+	cart::undo();
+}
+
 $link=mysqli_connect("localhost","root","","Spieleshop")
 or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!");
 
@@ -51,4 +55,14 @@ endwhile;
   </tr>
 </tfoot>
 </table>
+<form action="Versand.php">
+<p id="versand"> <input type="submit" <a href="Versand.php" value="Weiter"> </a> </p>
+</form>
+<form action="#" method="POST">
+<input type="hidden"  name="loeschen" value=5 readonly>
+<p id="undo"> <input type="submit" <a href="Warenkorb.php" value="Warenkorb löschen"> </a> </p>
+</form>
+<form action="Spieleshop.php">
+<p id="zuruek"> <input type="submit" <a href="Spieleshop.php" value="Zurück"> </a> </p>
+</form>
 </body>

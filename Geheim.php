@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['Kundennr'])) {
+if(!isset($_SESSION['userid'])) {
     die('Bitte zuerst <a href="login.php">einloggen</a>');
 }
  

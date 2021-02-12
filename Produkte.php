@@ -1,4 +1,22 @@
 <html>
+<head> 
+  <script>
+  function myFunction() {
+    var x, text;
+
+    // Get the value of the input field with id="numb"
+    x = document.getElementById("numb").value;
+
+    // If x is Not a Number or less than one or greater than 10
+    if (isNaN(x) || x < 1 || x > 10) {
+      text = "Bitte eine Zahl zwischen 1 und 10 eingeben!";
+    } else {
+      text = "Gespeichert!";
+    }
+    document.getElementById("demo").innerHTML = text;
+  }
+  </script>
+</head>
 <body background="Gray.jpg">
 </body>
 <?php
@@ -35,11 +53,16 @@ $zeile = $ergebnis->fetch_array();
    <td>
    <form action="Spieleshop.php"  method="POST">
    <input type="hidden"  name="WarenNr" value="<?=$Artikelnr?>" readonly>
-   <input type="number" name="Anzahl" required> 
-	<input type="submit" <a href="Spieleshop.php" value="Zum Warenkorb hinzufügen"> </a> 
-	</form>
-   </td>
-   </tr>
+   <input id="numb" value="1" name="Anzahl" required> 
+   <button type="button" onclick="myFunction()">Anzahl festlegen</button>
+   <p id="demo"></p>
+    <input type="submit" <a href="Spieleshop.php" value="Zum Warenkorb hinzufügen"> </a>
+    </form>
+<form action="Spieleshop.php">
+<p id="zuruek"> <input type="submit" <a href="Spieleshop.php" value="Zurück"> </a> </p>
+</form>
+</td>
+</tr>
 </table>
 </tr>
 </td>

@@ -10,6 +10,7 @@ session_start();
 cart::initialise();
 $ArtikelNr = filter_input(INPUT_POST, 'WarenNr');
 $Anzahl = filter_input(INPUT_POST, 'Anzahl');
+
 if (isset($ArtikelNr) && isset($Anzahl)) {
 	cart::add($ArtikelNr, $Anzahl);
 	unset($ArtikelNr);
@@ -34,7 +35,6 @@ $_SESSION['text'] = "Logout ({$daten['Vorname']})";
 ?>
 
 <li style="float:right"><a class="active" href="Benutzerregistrierung.php">Registrierung</a></li>
-<li style="float:right"><a class="active" href="Angaben.php">Angaben</a></li>
 <li style="float:right"><a class="active" href="<?=$_SESSION['href']?>"><?=$_SESSION['text']?></a></li>
 <li style="float:right"><a class="active" href="Warenkorb.php">Warenkorb (<?=cart::size()?>)</a></li>
 

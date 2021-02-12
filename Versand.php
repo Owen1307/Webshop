@@ -1,23 +1,25 @@
 <html>
-<body>
-<h1> Versand Ihrer Bestellung</h1>
-<form action="versandspeichern.php" method="get">
 <?php
-$bestellnr=$_GET['bestellnr'];
-print "Ihre Bestellnummer: $bestellnr<br><br>";
-print "<input type=hidden name='bestellnr' value=$bestellnr>";
-print "Bitte wählen Sie eine Versandart aus und klicken Sie auf Weiter:<br><br>";
-print "<select name='versandart' size=3>";
-$link=mysqli_connect("localhost","root","","");
-$abfrage="SELECT ID, beschreibung, preis FROM Versand";
-$ergebnis=mysqli_query($link,$abfrage);
-for ($i=0; $i<mysqli_num_rows($ergebnis);$i++)
-{$zeile=mysqli_fetch_row($ergebnis);
- print "<option value=$zeile[0]>$zeile[1] zum Preis von $zeile[2]</option>";
+session_start();
+if(!isset($_SESSION['Kundennr'])) {
+    die('Bitte zuerst <a href="login.php">einloggen</a>');
 }
 ?>
+<body background="Gray.jpg">
+<h1> <font color="white"> Versand Ihrer Bestellung</h1>
+<p> Bitte wählen Sie eine Versandart aus und klicken Sie auf Weiter:<br> </p>
+</font>
+<form action="Abschluss.php" method="post"> <br>
+<select name="Auswahl">
+    <option value="value1" selected="selected">Standard (5,00€)</option>
+    <option value="value2">Eil (9,00€)</option>
+	<option value="value3">Kes-Eil (15,00€)</option>
 </select>
 <input type=submit value="Weiter">
 </form>
+<form action="Spieleshop.php">
+<p id="abbrechen"> <input type="submit" <a href="Spieleshop.php" value="Abbrechen"> </a> </p>
+</form>
+<head>
 </body>
 </html>

@@ -74,24 +74,47 @@ class cart{
         return $sum;
     }
 	
-	public static function commitToDatabase($link)
+	public static function commitToDatabase($link, $deliveryCost)
 	{
-		$i = 0;
-		while(!empty($_SESSION['cart']))
-		{
-			$artikel = cart::get($i);
-			$anr = $artikel[0];
-			$vk = $artikel[1];
+		if(isset($_SESSION['Kundennr']) && !empty($_SESSION['cart'])) {
+			$i = 0;
+			$knr = $_SESSION['Kundennr'];
+			
+			$date = date("Y.m.d");	
+			$dateTime = new DateTime();
+			$dateTime->modify('+3 day');
+			$deliveryDate = $dateTime->format('Y-m-d');
+			
+			$sql = "INSERT INTO Bestellungen (Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('$knr', '$date', '$deliveryDate', '$deliveryCost')";
+			mysqli_query($link, $sql) or die (mysqli_error($link));
+					
+			$bnr = $link->insert_id;
+			
+			while($i < count($_SESSION['cart']))
+			{
+				$artikel = cart::get($i);
+				$anr = $artikel[0];
+				$vk = $artikel[1];
+				$anzahl = $artikel[1];
+
+				$sql = "SELECT Verkaeufe FROM artikel WHERE Artikelnr=$anr";
+				$result = mysqli_query($link,$sql) or die (mysqli_error($link));
+				$vk += $result->fetch_array()['Verkaeufe'];
 				
-			$sql = "SELECT Verkaeufe FROM artikel WHERE Artikelnr=$anr";
-			$result = mysqli_query($link,$sql) or die (mysqli_error($link));
-			$vk += $result->fetch_array()['Verkaeufe'];
-			
-			$sql = "UPDATE artikel SET Verkaeufe=$vk WHERE Artikelnr='$anr'";	
-			mysqli_query($conn, $sql) or die (mysqli_error($link));	
-			
-			remove($i);
-			++$i;
+				$sql = "UPDATE artikel SET Verkaeufe=$vk WHERE Artikelnr='$anr'";	
+				mysqli_query($link, $sql) or die (mysqli_error($link));	
+				
+				$sql = "SELECT Preis FROM artikel WHERE Artikelnr='$anr'";
+				$result = mysqli_query($link,$sql) or die (mysqli_error($link));
+				$pr = $result->fetch_array()['Preis'];
+				
+
+				$sql = "INSERT INTO Bestelldetails (Bestellnr, Artikelnr, Einzelpreis, Anzahl) VALUES ('$bnr', '$anr', '$pr', '$anzahl')";
+				mysqli_query($link, $sql) or die (mysqli_error($link));
+				
+				++$i;
+			}
+			cart::undo();
 		}
 	}
 	

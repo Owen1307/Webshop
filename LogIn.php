@@ -47,6 +47,9 @@ Dein Passwort:<br>
 
 </font>
 </form> 
+<form action="Spieleshop.php">
+<p id="zuruek"> <input type="submit" <a href="Spieleshop.php" value="Zurück"> </a> </p>
+</form>
 </body>
 
 </html>

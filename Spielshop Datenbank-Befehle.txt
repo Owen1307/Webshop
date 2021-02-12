@@ -2,11 +2,11 @@ mysql.exe -uroot
 create database Spieleshop;
 use Spieleshop;
 
-create table Genre (GenreID INTEGER NOT NULL, Name VARCHAR(30), PRIMARY KEY (GenreID));
-create table Artikel (Artikelnr INTEGER NOT NULL, Spielname VARCHAR (50), GenreID INTEGER NOT NULL, Entwickler VARCHAR(50), Plattform VARCHAR(30), Preis double, Veroeffentlichung date, Bild VARCHAR(100), Verkaeufe INTEGER(10), PRIMARY KEY(Artikelnr));
-create table Kunde (Kundennr INTEGER NOT NULL, Vorname VARCHAR(30), Nachname VARCHAR(30), Geburtsdatum DATE, Strasse VARCHAR(40), Hausnummer VARCHAR(10), Passwort VARCHAR(255), PRIMARY KEY (Kundennr));
-create table Bestellungen (Bestellnr INTEGER NOT NULL, Kundennr INTEGER NOT NULL, Bestelldatum DATE, Lieferdatum DATE, PRIMARY KEY (Bestellnr));
-create table Bestelldetails (ID INTEGER NOT NULL, Bestellnr INTEGER NOT NULL, Artikelnr INTEGER NOT NULL, Einzelpreis DOUBLE, Anzahl INTEGER, PRIMARY KEY(ID));
+create table Genre (GenreID INTEGER NOT NULL AUTO_INCREMENT, Name VARCHAR(30), PRIMARY KEY (GenreID));
+create table Artikel (Artikelnr INTEGER NOT NULL AUTO_INCREMENT, Spielname VARCHAR (50), GenreID INTEGER NOT NULL, Entwickler VARCHAR(50), Plattform VARCHAR(30), Preis double, Veroeffentlichung date, Bild VARCHAR(100), Verkaeufe INTEGER(10), PRIMARY KEY(Artikelnr));
+create table Kunde (Kundennr INTEGER NOT NULL AUTO_INCREMENT, Vorname VARCHAR(30), Nachname VARCHAR(30), Geburtsdatum DATE, Strasse VARCHAR(40), Hausnummer VARCHAR(10), Passwort VARCHAR(255), PRIMARY KEY (Kundennr));
+create table Bestellungen (Bestellnr INTEGER NOT NULL AUTO_INCREMENT, Kundennr INTEGER NOT NULL, Bestelldatum DATE, Lieferdatum DATE, Versandkosten double, PRIMARY KEY (Bestellnr));
+create table Bestelldetails (ID INTEGER NOT NULL AUTO_INCREMENT, Bestellnr INTEGER NOT NULL, Artikelnr INTEGER NOT NULL, Einzelpreis DOUBLE, Anzahl INTEGER, PRIMARY KEY(ID));
 
 
 // Artikel 
@@ -32,11 +32,11 @@ Die Kunden werden von der Datenbank erzeugt.
 
 // Bestellungen 
 
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum) VALUES ('1', '1', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum) VALUES ('2', '2', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum) VALUES ('3', '3', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum) VALUES ('4', '4', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum) VALUES ('5', '5', '2020-09-22', '2020-09-25');
+insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('1', '1', '2020-09-22', '2020-09-25');
+insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('2', '2', '2020-09-22', '2020-09-25');
+insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('3', '3', '2020-09-22', '2020-09-25');
+insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('4', '4', '2020-09-22', '2020-09-25');
+insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('5', '5', '2020-09-22', '2020-09-25');
 
 // Bestelldetails
 

@@ -28,23 +28,15 @@ insert into Genre (GenreID, Name) VALUES ('5', 'Jump and Run');
 
 // Kunde
 
-Die Kunden werden von der Datenbank erzeugt.
+Die Kunden werden vom Shop erzeugt.
 
 // Bestellungen 
 
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('1', '1', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('2', '2', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('3', '3', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('4', '4', '2020-09-22', '2020-09-25');
-insert into Bestellungen (Bestellnr, Kundennr, Bestelldatum, Lieferdatum, Versandkosten) VALUES ('5', '5', '2020-09-22', '2020-09-25');
+Die Bestellungen werden vom Shop erzeugt.
 
 // Bestelldetails
 
-insert into Bestelldetails (Bestellnr, Artikelnr, Einzelpreis, Anzahl) VALUES ('1', '1', '69.99', '5');
-insert into Bestelldetails (Bestellnr, Artikelnr, Einzelpreis, Anzahl) VALUES ('2', '2', '69.99', '5');
-insert into Bestelldetails (Bestellnr, Artikelnr, Einzelpreis, Anzahl) VALUES ('3', '3', '69.99', '5');
-insert into Bestelldetails (Bestellnr, Artikelnr, Einzelpreis, Anzahl) VALUES ('4', '4', '19.99', '5');
-insert into Bestelldetails (Bestellnr, Artikelnr, Einzelpreis, Anzahl) VALUES ('5', '5', '69.99', '5');
+Die Bestelldetails werden vom Shop erzeugt.
 
 
 
